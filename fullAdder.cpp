@@ -7,25 +7,23 @@ xorGate(int a, int b),
 halfSum(int a, int b),
 halfCarry(int a, int b),
 fullSum(int halfSum, int carryIn),
-fullCarry(int a, int b, int carryIn, int halfSum);
+fullCarry(int halfCarryA, int halfCarryB);
 
 
 int main(){
     int sum = 0,
-    carry = 0,
-    carryOut;
+    carry = 0;
     int a,
     b,
     carryIn;
-    cout << "Enter A, B and C-In";
+    cout << "Enter A, B and C-In" << endl;
     cin >> a >> b >> carryIn;
 
     sum = fullSum(halfSum(a, b), carryIn);
-    carryOut =  fullCarry(a,  b, carryIn, halfSum(a, b));
+    carry =  (halfCarry(a,b), halfCarry(carryIn,xorGate(a,b)));
     //half adder
 
-    cout << "sum: " << sum << endl << "carry: " << carry << endl
-    << "carry in: " << carryIn << endl;
+    cout << "sum: " << sum << endl << "carry: " << carry << endl;
 }
 
 
@@ -63,16 +61,6 @@ int halfCarry(int a, int b){
 
 int fullSum(int halfSum, int carryIn){
     int out = 0;
-    out = andGate(halfSum, carryIn);
-    return out;
-}
-
-int fullCarry(int a, int b, int carryIn, int halfSum){
-    int out = 0,
-    halfA = 0,
-    halfB = 0;
-    halfA = andGate(halfSum, carryIn),
-    halfB = andGate(a, b);
-    out = orGate(halfA, halfB);
+    out = xorGate(halfSum, carryIn);
     return out;
 }
